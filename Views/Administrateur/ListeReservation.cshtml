@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PaginatedList<GestionReservation.Models.DetailsReservations>
+
+@{
+    ViewData["Title"] = "Liste Réservations";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Admin</a></li>
+                <li><a asp-area="" asp-controller="Vols" asp-action="Index">Configurer Vol</a></li>
+                <li><a asp-area="" asp-controller="Avions" asp-action="Index">Configurer Avion</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="ListeReservation">Voir Liste Réservations</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<form asp-action="ListeReservation" method="get">
+    <div class="form-actions no-color" id="centre0">
+        <p>
+            Rechercher par Identifiant Client : <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Rechercher" class="btn btn-secondary" /> |
+            <a asp-action="ListeReservation">Voir Liste Réservations</a>
+        </p>
+    </div>
+</form>
+<br />
+<div id="centre"><h4>Liste de toutes les réservations</h4></div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Réservation
+            </th>
+            <th>
+                Identifiant Client
+            </th>
+            <th>
+                Date et Heure Vol
+            </th>
+            <th>
+                Durée Vol
+            </th>
+            <th>
+                Lieu de Départ
+            </th>
+            <th>
+                Lieu d' Arrivée
+            </th>
+            <th>
+                Modèle Avion
+            </th>
+            <th>
+                Nombre Place Affaire Réservée
+            </th>
+            <th>
+                Nombre Place Economique Réservée
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identifiant)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateHeureVol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DureeVol)  heures
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LieuDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LieuArrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modele)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NbrPlaceAffaireResa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NbrPlaceEcoResa)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="ListeReservation" style="margin-left: 550px;"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-secondary @prevDisabled">
+    Précedent
+</a>
+<a asp-action="ListeReservation"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-secondary @nextDisabled">
+    Suivant
+</a>
+<br />
+<br />

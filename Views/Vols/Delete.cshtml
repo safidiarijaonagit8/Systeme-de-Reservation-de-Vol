@@ -1,0 +1,80 @@
+﻿@model GestionReservation.Models.Vol
+
+@{
+    ViewData["Title"] = "Supprimer Vol";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Admin</a></li>
+                <li><a asp-area="" asp-controller="Vols" asp-action="Index">Configurer Vol</a></li>
+                <li><a asp-area="" asp-controller="Avions" asp-action="Index">Configurer Avion</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="ListeReservation">Voir Liste Réservations</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+<br />
+<div id="centre">
+    <h1>Suppression Vol</h1>
+
+    <h3>Voulez vous vraiment supprimer?</h3>
+    <div>
+        <br /><br />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateHeureVol)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateHeureVol)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DureeVol)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DureeVol)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LieuDepart)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LieuDepart)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LieuArrivee)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.LieuArrivee)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IdAvion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdAvion)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+            <a asp-action="Index">Voir Liste Vols</a>
+        </form>
+    </div>
+</div>
+<br />
+<br />
+<br />

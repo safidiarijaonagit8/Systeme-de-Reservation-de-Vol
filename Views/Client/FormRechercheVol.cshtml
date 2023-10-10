@@ -1,0 +1,71 @@
+﻿@model GestionReservation.Models.Vol
+
+@{
+    ViewData["Title"] = "Recherche Vol";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+<br />
+<div id="centre">
+    <h1>Recherche Vol</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="ResultatRechercheVol">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="DateHeureVol" class="control-label"></label>
+                    <input asp-for="DateHeureVol" required class="form-control" />
+                    <span asp-validation-for="DateHeureVol" class="text-danger"></span>
+                </div><br />
+                
+                <div class="form-group">
+                   
+                    <input type="hidden" value="0" asp-for="DureeVol" class="form-control" />
+                    <span asp-validation-for="DureeVol" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LieuDepart" class="control-label"></label>
+                    <input asp-for="LieuDepart" required class="form-control" />
+                    <span asp-validation-for="LieuDepart" class="text-danger"></span>
+                </div><br />
+                <div class="form-group">
+                    <label asp-for="LieuArrivee" class="control-label"></label>
+                    <input asp-for="LieuArrivee" required class="form-control" />
+                    <span asp-validation-for="LieuArrivee" class="text-danger"></span>
+                </div>
+                      <div class="form-group">
+                        
+                          <input value="0" type="hidden" asp-for="IdAvion" class="form-control" />
+                          <span asp-validation-for="IdAvion" class="text-danger"></span>
+                       </div><br />
+                <div class="form-group">
+                    <input type="submit" value="Rechercher" style="margin-left: 75px;" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

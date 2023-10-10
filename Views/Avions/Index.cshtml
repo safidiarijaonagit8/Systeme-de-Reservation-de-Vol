@@ -1,0 +1,113 @@
+﻿@model PaginatedList<GestionReservation.Models.Avion>
+
+
+@{
+    ViewData["Title"] = "Avions";
+}
+
+
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Admin</a></li>
+                <li><a asp-area="" asp-controller="Vols" asp-action="Index">Configurer Vol</a></li>
+                <li><a asp-area="" asp-controller="Avions" asp-action="Index">Configurer Avion</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="ListeReservation">Voir Liste Réservations</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+<br />
+<p>
+    <a asp-action="Create"  style="margin-left: 590px;"  class="btn btn-success">Ajouter Avion</a>
+</p>
+<br />
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color" id="centre0">
+        <p>
+            Rechercher Modèle Avion : <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Rechercher" class="btn btn-secondary" /> |
+            <a asp-action="Index">Voir Liste Avions</a>
+        </p>
+    </div>
+</form>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Avion
+            </th>
+            <th>
+                Modèle
+            </th>
+            <th>
+                Nombre Siège Affaire
+            </th>
+            <th>
+                Nombre Siège Economique
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modele)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NbrSiegeAffaire)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NbrSiegeEconomique)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" style="margin-left: 550px;"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-secondary @prevDisabled">
+    Précedent
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-secondary @nextDisabled">
+    Suivant
+</a>
+<br />
+<br />

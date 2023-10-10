@@ -1,0 +1,192 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model GestionReservation.Models.DetailsVols
+
+@{
+    ViewData["Title"] = "Details Vol";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+<div style="margin-left: 550px;">
+    <h1>Details Vol</h1>
+    </div>
+    <div style="margin-left: 300px;">
+        <br /> <br />
+
+        <dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.DateHeureVol)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.DateHeureVol)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.DureeVol)
+            </dt>
+            <dd class="col-sm-5">
+                <p> @Html.DisplayFor(model => model.DureeVol) heures</p>
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.LieuDepart)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.LieuDepart)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.LieuArrivee)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.LieuArrivee)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Modele)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.Modele)
+            </dd>
+           
+            <dt class="col-sm-5">
+                <p style="background-color:lightgreen;">
+                    @Html.DisplayNameFor(model => model.NbrSiegeAffaire)</p>
+            </dt>
+            <dd class="col-sm-5">
+                <p style="background-color:lightgreen;">
+                    @Html.DisplayFor(model => model.NbrSiegeAffaire)</p>
+            </dd>
+            <dt class="col-sm-5">
+                <p style="background-color:lightgreen;">
+                    @Html.DisplayNameFor(model => model.nbrPlaceAffaireReserver)</p>
+
+            </dt>
+            <dd class="col-sm-5">
+                @if (Model.nbrPlaceAffaireReserver == null)
+                {
+                    <p style="background-color:lightgreen;">0
+                    </p>
+                }
+                else
+                {   <p style="background-color:lightgreen;">
+                    @Html.DisplayFor(model => model.nbrPlaceAffaireReserver)</p>
+                }
+
+                </dd>
+            <dt class="col-sm-5">
+                <p style="background-color:lightgreen;">
+                    Place affaire disponible</p>
+            </dt>
+            <dd class="col-sm-5">
+                @if (Model.nbrPlaceAffaireReserver == null)
+                {
+                    <p style="background-color:lightgreen;">
+                        @(Model.NbrSiegeAffaire)</p>
+                }
+                else
+                {
+                    <p style="background-color:lightgreen;">
+                         @(Model.NbrSiegeAffaire - Model.nbrPlaceAffaireReserver)</p>
+                }
+            </dd>
+            
+            
+            <dt class="col-sm-5">
+                <p style="background-color:yellow;">
+                    @Html.DisplayNameFor(model => model.NbrSiegeEconomique)
+                </p>
+            </dt>
+            <dd class="col-sm-5">
+                <p style="background-color:yellow;">
+                    @Html.DisplayFor(model => model.NbrSiegeEconomique)
+                    </p>
+            </dd>
+
+            <dt class="col-sm-5">
+                <p style="background-color:yellow;">
+                    @Html.DisplayNameFor(model => model.nbrPlaceEconomieReserver)
+                    </p>
+            </dt>
+            <dd class="col-sm-5">
+               
+                @if (Model.nbrPlaceEconomieReserver == null)
+                {
+                    <p style="background-color:yellow;">
+                        0
+                    </p>
+                }
+                else
+                { <p style="background-color:yellow;">
+    @Html.DisplayFor(model => model.nbrPlaceEconomieReserver)
+</p>
+                }
+            </dd>
+
+            <dt class="col-sm-5">
+                <p style="background-color:yellow;">
+                    Place économie disponible
+                    </p>
+            </dt>
+            <dd class="col-sm-5">
+
+                
+                @if (Model.nbrPlaceEconomieReserver == null)
+                {
+                    <p style="background-color:yellow;">
+                        @(Model.NbrSiegeEconomique)
+                    </p>
+                }
+                else
+                {
+            <p style="background-color:yellow;">
+                @(Model.NbrSiegeEconomique - Model.nbrPlaceEconomieReserver)
+            </p>
+                }
+
+            </dd>
+    </dl>
+
+        <div>
+            @if (Model.DateHeureVol > DateTime.Now)
+            {
+                <a asp-action="FormReservation" class="btn btn-primary"  asp-route-id="@Model.Id" style="margin-left: 350px;">Réserver</a>
+            }
+            else if(Model.DateHeureVol < DateTime.Now)
+            {
+                <h4 class="small fw-bold mt-4 pt-1 mb-0" style="margin-left: 300px;"><p class="link-danger">Ce Vol n'est plus disponible !!!</p></h4>
+
+            }
+
+        </div>
+</div>
+    
+<br />
+<br />
+<br />

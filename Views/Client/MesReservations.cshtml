@@ -1,0 +1,103 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Mes Réservations";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<div id="centre"><h4>Liste de mes réservations</h4></div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Réservation
+            </th>
+            <th>
+                Identifiant Client
+            </th>
+            <th>
+                Date et Heure du Vol
+            </th>
+            <th>
+                Durée du Vol
+            </th>
+            <th>
+                Lieu de Départ
+            </th>
+            <th>
+                Lieu d' Arrivée
+            </th>
+            <th>
+                Modèle Avion
+            </th>
+            <th>
+              Nombre Place Affaire Réservée
+            </th>
+            <th>
+                Nombre Place Economique Réservée
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in ViewData["mesreservations"] as List<DetailsReservations>)
+        {
+        <tr>
+            <td>
+                @data.Id
+            </td>
+            <td>
+                @data.Identifiant
+            </td>
+
+            <td>
+                @data.DateHeureVol
+            </td>
+            <td>
+                @data.DureeVol heures
+            </td>
+            <td>
+                @data.LieuDepart
+            </td>
+            <td>
+                @data.LieuArrivee
+            </td>
+            <td>
+                @data.Modele
+            </td>
+            <td>
+                @data.NbrPlaceAffaireResa
+            </td>
+            <td>
+                @data.NbrPlaceEcoResa
+            </td>
+           
+        </tr>
+        }
+    </tbody>
+</table>

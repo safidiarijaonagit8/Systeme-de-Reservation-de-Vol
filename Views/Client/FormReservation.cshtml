@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Formulaire Réservation Vol";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+
+    <div id="centre">
+        <h1>Réservation Vol</h1>
+        <br />
+        <div class="row">
+            <div class="col-md-5">
+                <form asp-action="VerificationReservation">
+                    <input type="hidden" name="idVol" value="@ViewData["idVol"] " />
+                    <div class="form-group">
+                        <label class="control-label">Nombre place affaire à reserver</label>
+                        <input type="number" name="resanbrplaceaffaire" required min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" class="form-control" />
+
+                    </div><br />
+
+                    <div class="form-group">
+                        <label class="control-label">Nombre place economique à reserver</label>
+                        <input type="number" name="resanbrplaceeco" required min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" class="form-control" />
+
+                    </div><br />
+
+
+                    <div class="form-group">
+                        <input type="submit" id="centre2" value="Réserver" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,121 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PaginatedList<GestionReservation.Models.Vol>
+
+@{
+    ViewData["Title"] = "Liste Vols Client";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<form asp-action="ListeVol" method="get">
+    <div class="form-actions no-color" style="margin-left: 350px;">
+        <p>
+            Rechercher Lieu de départ ou arrivée : <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Rechercher" class="btn btn-secondary" /> |
+            <a asp-action="ListeVol">Voir Liste Vols</a>
+        </p>
+    </div>
+</form>
+<br />
+
+<div id="centre"><h4>Liste de tous les vols</h4></div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Vol
+            </th>
+            <th>
+                Date et Heure Vol
+            </th>
+            <th>
+                Durée Vol
+            </th>
+            <th>
+                Lieu de Départ
+            </th>
+            <th>
+                Lieu d' Arrivée
+            </th>
+            <th>
+                Id Avion
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateHeureVol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DureeVol) heures
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LieuDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LieuArrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAvion)
+                </td>
+                <td>
+
+                    <a asp-action="DetailsVol" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="ListeVol" style="margin-left: 550px;"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-secondary @prevDisabled">
+    Précedent
+</a>
+<a asp-action="ListeVol"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-secondary @nextDisabled">
+    Suivant
+</a>
+<br />
+<br />

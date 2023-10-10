@@ -1,0 +1,67 @@
+﻿@model GestionReservation.Models.Avion
+
+@{
+    ViewData["Title"] = "Details Avion";
+}
+
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Admin</a></li>
+                <li><a asp-area="" asp-controller="Vols" asp-action="Index">Configurer Vol</a></li>
+                <li><a asp-area="" asp-controller="Avions" asp-action="Index">Configurer Avion</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="ListeReservation">Voir Liste Réservations</a></li>
+                <li><a asp-area="" asp-controller="Administrateur" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+<br />
+<div id="centre">
+    <h1>Details Avion</h1>
+    <br />
+    <div>
+
+
+        <dl class="row">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Modele)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.Modele)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NbrSiegeAffaire)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.NbrSiegeAffaire)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.NbrSiegeEconomique)
+            </dt>
+            <dd class="col-sm-5">
+                @Html.DisplayFor(model => model.NbrSiegeEconomique)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Modifier</a> |
+        <a asp-action="Index">Voir Liste Avions</a>
+    </div>
+</div>
+<br />
+<br />
+<br />

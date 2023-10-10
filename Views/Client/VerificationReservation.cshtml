@@ -1,0 +1,107 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Reservation Vol";
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+@if (ViewData["manqueplaceaffaire"] != null)
+{
+    <div class="card text-center">
+        <div class="card-header">
+            Réservation Vol
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nombre de place en classe affaire insuffisant</h5>
+            <p class="card-text">Le nombre de place en classe affaire que vous souhaitez réserver n'est pas disponible.</p>
+            <form asp-action="PropositionVol">
+                <input type="hidden" name="idVol" value="@ViewData["idVol"] " />
+               
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Voir proposition Vol" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            Merci
+        </div>
+    </div>
+}
+@if (ViewData["manqueplaceeco"] != null)
+{
+    <div class="card text-center">
+        <div class="card-header">
+            Réservation Vol
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nombre de place en classe économique insuffisant</h5>
+            <p class="card-text">Le nombre de place en classe économique que vous souhaitez réserver n'est pas disponible.</p>
+            <form asp-action="PropositionVol">
+                <input type="hidden" name="idVol" value="@ViewData["idVol"] " />
+              
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Voir proposition Vol" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            Merci
+        </div>
+    </div>
+}
+@if (ViewData["placesok"] != null)
+{
+    <div class="card text-center">
+        <div class="card-header">
+            Réservation Vol
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Nombre de place en classe affaire et économique disponible.</h5>
+            <p class="card-text">Le nombre de place en classe affaire et économique que vous souhaitez réserver est disponible.</p>
+       
+            <form asp-action="SaveReservation">
+                <input type="hidden" name="idVol" value="@ViewData["idVol"] " />
+                <input type="hidden" name="resanbrplaceaffaire" value="@ViewData["resanbrplaceaffaire"] " />
+                <input type="hidden" name="resanbrplaceeco" value="@ViewData["resanbrplaceeco"] " />
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Valider Réservation" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            Merci
+        </div>
+    </div>
+}

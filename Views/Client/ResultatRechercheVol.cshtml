@@ -1,0 +1,149 @@
+﻿@model GestionReservation.Models.Intermediaire
+@{
+    ViewData["Title"] = "Resultat Vol";
+
+}
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('~/assets/img/page-header.jpg');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>Bienvenue</h2>
+                    <p>Site de réservation de billet d'avion.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="">Bienvenue Client</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="FormRechercheVol">Rechercher Vol</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="ListeVol">Liste de tous les vols</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="MesReservations">Voir mes réservations</a></li>
+                <li><a asp-area="" asp-controller="Client" asp-action="Logout">Log Out</a></li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<br />
+<br />
+<br />
+<div>
+    <h4  style="margin-left: 370px;">Vol Date et Heure précise :  @Model?.volrechercher?.DateHeureVol</h4>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id Vol
+                </th>
+                <th>
+                    Date et Heure Vol
+                </th>
+                <th>
+                    Durée Vol
+                </th>
+                <th>
+                    Lieu Départ
+                </th>
+                <th>
+                    Lieu Arrivée
+                </th>
+                <th>
+                    Id Avion
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model?.resultatVolDateTime as List<Vol>)
+
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateHeureVol)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DureeVol)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LieuDepart)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LieuArrivee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAvion)
+                    </td>
+                    <td>
+
+                        <a asp-action="DetailsVol" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br /><br /><br /><br />
+
+<h4 id="centre">Vol Date : @Model?.volrechercher?.DateHeureVol.ToString("dd/MM/yyyy")</h4>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Vol
+            </th>
+            <th>
+                Date et Heure Vol
+            </th>
+            <th>
+                Durée Vol
+            </th>
+            <th>
+                Lieu Départ
+            </th>
+            <th>
+                Lieu Arrivée
+            </th>
+            <th>
+                Id Avion
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model?.resultatVolDate as List<Vol>)
+
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateHeureVol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DureeVol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LieuDepart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LieuArrivee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAvion)
+                </td>
+                <td>
+
+                    <a asp-action="DetailsVol" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
