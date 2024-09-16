@@ -1,5 +1,5 @@
 # Systeme de Réservation de Vol
- Projet fait avec ASP .NET CORE MVC 3.1 avec Entity Framework CORE , base de données SQL SERVER.
+ Projet fait avec ASP .NET CORE avec Entity Framework CORE , base de données SQL SERVER.
 
  Description:
  Ce projet permet de digitaliser le processus de réservation des vols d'avion.
